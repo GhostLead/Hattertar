@@ -1,0 +1,41 @@
+﻿<Window x:Class="hattertar_szamolas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:hattertar_szamolas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="450">
+    <Grid x:Name="window">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="lblKapacitas" Content="Kapacitás:" FontSize="16" Margin=" 0 0 0 0 " Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtKapacitas" Background="Black" BorderBrush="Red" Foreground="Red" Grid.Row="0" Grid.Column="1" Width="100" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin=" 0 0 0 0 " FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox x:Name="boxKapacitas" Grid.Row="0" Grid.Column="2" Width="50" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,40,0,0"/>
+
+
+        <Label x:Name="lblAtvitel" Content="Átviteli sebesség:" FontSize="16" Margin=" 0 0 0 0 " Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblAtviteliSeb" Content="{Binding ElementName=sliCsuszka, Path=Value}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" Foreground="Red"/>
+        <Label x:Name="lblTen" Content="10" Grid.Row="2" Grid.Column="0"/>
+        <Slider x:Name="sliCsuszka" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin=" 25 5 0 0 " Minimum="10" Maximum="5000" Value="2500" IsSnapToTickEnabled="True" TickFrequency="1"/>
+        <Label x:Name="lblFiveTh" Content="5000" Grid.Row="2" Grid.Column="2"/>
+        <ComboBox x:Name="boxAtvitel" Grid.Column="2" Grid.Row="2" Width="65" Height="25" Margin=" 0 0 0 40 "/>
+
+        <Button x:Name="btnSzamol" Content="Számol" Width="80" Height="40" Grid.Row="3" HorizontalAlignment="Left" Click="btnSzamol_Click"/>
+
+
+    </Grid>
+</Window>
