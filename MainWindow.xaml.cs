@@ -64,52 +64,75 @@ namespace hattertar_szamolas
         {
             //  atvitel / kapacitas
 
-            double kapacitasSzam = Convert.ToDouble(txtKapacitas.Text);
-            double atvitelSzam = sliCsuszka.Value;
-            double eredmeny = 0;
-            string? kapacitasMert = Convert.ToString(boxKapacitas.SelectedItem);
-            string? atvitelMert = Convert.ToString(boxAtvitel.SelectedItem);
+            double kapacitasSzam = 0;
+            bool fojtatodhat = true;
 
-            if (kapacitasMert == "KB")
+            try
             {
-                
-            }
-            else if (kapacitasMert == "MB")
-            {
-                kapacitasSzam *= 1000;
-            }
-            else if (kapacitasMert == "GB")
-            {
-                kapacitasSzam *= 1000 * 1000;
-            }
-            else if (kapacitasMert == "TB")
-            {
-                kapacitasSzam *= 1000 * 1000 * 1000;
-            }
+                kapacitasSzam = Convert.ToDouble(txtKapacitas.Text);
 
-            if (atvitelMert == "KBps")
-            {
+                if (kapacitasSzam == 0)
+                {
+                    fojtatodhat = false;
+                }
 
             }
-            else if (atvitelMert == "MBps")
+            catch (FormatException)
             {
-                atvitelSzam *= 1000;
-            }
-            else if (atvitelMert == "GBps")
-            {
-                atvitelSzam *= 1000 * 1000;
-            }
-            else if (atvitelMert == "TBps")
-            {
-                atvitelSzam *= 1000 * 1000 * 1000;
+                fojtatodhat = false;
+                MessageBox.Show("Hiba történt a kapacitás beolvasásakor! Kérlek ellenőrizd a beviteli mezőt!");
             }
 
-            eredmeny = kapacitasSzam / atvitelSzam;
+            if (fojtatodhat == true)
+            {
+                double atvitelSzam = sliCsuszka.Value;
+                double eredmeny = 0;
+                string? kapacitasMert = Convert.ToString(boxKapacitas.SelectedItem);
+                string? atvitelMert = Convert.ToString(boxAtvitel.SelectedItem);
 
-            TimeSpan time = TimeSpan.FromSeconds(Math.Round(eredmeny,3));
-            string vegEredmeny = time.ToString(@"hh\:mm\:ss\:fff");
+                if (kapacitasMert == "KB")
+                {
 
-            MessageBox.Show($"{vegEredmeny}");
+                }
+                else if (kapacitasMert == "MB")
+                {
+                    kapacitasSzam *= 1000;
+                }
+                else if (kapacitasMert == "GB")
+                {
+                    kapacitasSzam *= 1000 * 1000;
+                }
+                else if (kapacitasMert == "TB")
+                {
+                    kapacitasSzam *= 1000 * 1000 * 1000;
+                }
+
+                if (atvitelMert == "KBps")
+                {
+
+                }
+                else if (atvitelMert == "MBps")
+                {
+                    atvitelSzam *= 1000;
+                }
+                else if (atvitelMert == "GBps")
+                {
+                    atvitelSzam *= 1000 * 1000;
+                }
+                else if (atvitelMert == "TBps")
+                {
+                    atvitelSzam *= 1000 * 1000 * 1000;
+                }
+
+                eredmeny = kapacitasSzam / atvitelSzam;
+
+                TimeSpan time = TimeSpan.FromSeconds(Math.Round(eredmeny, 3));
+                string vegEredmeny = time.ToString(@"hh\:mm\:ss\:fff");
+
+                MessageBox.Show($" Az átvitelhez szükséges idő: {vegEredmeny}");
+            }
+
+            
         }
     }
 }
